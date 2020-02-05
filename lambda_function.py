@@ -11,5 +11,5 @@ def lambda_handler(event, context):
             if 'NoShutdown' not in [t['Key'] for t in noShutdown['Tags']]:
                 response = sagemakerClient.stop_notebook_instance(NotebookInstanceName=instance['NotebookInstanceName'])
                 return 200
-        sagemakerList = sagemaker.list_notebook_instances(
+        sagemakerList = sagemakerClient.list_notebook_instances(
             NextToken=sagemakerList['NextToken']) if 'NextToken' in sagemakerList else None
